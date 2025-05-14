@@ -5,12 +5,8 @@ import objects.image
 import objects.buttons
 
 
-
-
-
-
 def output(window):
-    bg= objects.image.still(0,0,1000,1000,'images/TItle.png')
+    bg= objects.image.still(0,0,1000,1000,'images/title_screen.png')
     btn_start = objects.buttons.no_background(100,850,"Arial",24,(235, 64, 52),(98, 52, 235),"Start Game")
     btn_exit = objects.buttons.no_background(100,700,"Arial",24,(235, 64, 52),(98, 52, 235),"Click me to Exit")
 
