@@ -10,7 +10,7 @@ def output(window):
     btn_start = objects.buttons.no_background(100,850,"Arial",24,(235, 64, 52),(98, 52, 235),"Start Game")
     btn_exit = objects.buttons.no_background(100,700,"Arial",24,(235, 64, 52),(98, 52, 235),"Click me to Exit")
     btn_options = objects.buttons.no_background(400,750,"Arial",24,(235, 64, 52),(98, 52, 235),"options")
-
+    
     def display():
         window.fill((0,0,0)) #White background
         bg.draw(window)

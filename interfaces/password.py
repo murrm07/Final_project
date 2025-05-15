@@ -10,7 +10,7 @@ import objects.text
 def output(window):
     bg = objects.image.still(0,0,1000,1000,'images/password.png')
     db_connection = objects.database.create_connection("database.db")
-    objects.database.create_table(db_connection,"Password",["username TEXT", "password INTEGER"])
+    objects.database.create_table(db_connection,"Password",["username TEXT", "password INTEGER","level INTEGER"])
     font = pygame.font.SysFont("Arial", 30)
     txt_username = objects.text.input(250,200,500,100,'Consolas',30,(0,0,0),(255,255,255))
     txt_password = objects.text.input(250,450,500,100,'Consolas',30,(0,0,0),(255,255,255))
@@ -19,8 +19,7 @@ def output(window):
     btn_exit = objects.buttons.no_background(800,950,"Arial",24,(235, 64, 52),(98, 52, 235),"Click me to Exit")
     txt_group = pygame.sprite.Group()
     txt_group.add(txt_username, txt_password)
-
-
+    
     def display():
         window.fill((0,0,0)) #White background
         bg.draw(window)
