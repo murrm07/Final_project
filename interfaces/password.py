@@ -55,6 +55,7 @@ def output(window):
             if btn_exit.update(pygame.mouse.get_pos(),event):
                 pygame.quit() 
                 sys.exit()
+            
                 
         # if user  QUIT then the screen will close
             if event.type == pygame.QUIT:

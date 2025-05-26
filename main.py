@@ -3,10 +3,14 @@
 #to create space invaders game
 
 import pygame
+import interfaces.level_1
 import manager
 import interfaces.title_screen
 import interfaces.password
 import interfaces.map   
+import interfaces.options
+import interfaces.level_2
+import interfaces.level_3
 pygame.init()
 
 window = pygame.display.set_mode((manager.WINDOW_WIDTH,manager.WINDOW_HEIGHT), pygame.HWSURFACE)
@@ -19,5 +23,13 @@ while True:
         interfaces.password.output(window)
     if manager.screen == 2:
         interfaces.map.output(window)
+    if manager.screen == 3:
+        interfaces.level_1.output(window)
+    if manager.screen == 4:
+        interfaces.options.output(window)
+    if manager.screen == 5:
+        interfaces.level_2.output(window)
+    if manager.screen == 6:
+        interfaces.level_3.output(window)
    
         

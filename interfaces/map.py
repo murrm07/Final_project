@@ -9,6 +9,11 @@ import objects.player
 def output(window):
     bg= objects.image.still(0,0,1000,1000,'images/map.png')
     guy= objects.player.Player(410,900,100,100,7,'images/Character.png')
+    level1 = objects.image.still(0,0,1000,1000,'images/level_1.png')
+    level2 = objects.image.still(0,0,1000,1000,'images/level_2.png')
+    level3 = objects.image.still(0,0,1000,1000,'images/level_3.png')
+    
+    
 
 
 
@@ -17,11 +22,24 @@ def output(window):
         bg.draw(window)
         guy.draw(window)
         
-    
-     
         
+    def collision():
+        if  pygame.sprite.collide_mask(guy, level1):
+            manager.screen = 3
+            print   ("level 1")
+            return False
+        elif  pygame.sprite.collide_mask(guy, level2):
+            manager.screen = 4
+            return False
+        elif  pygame.sprite.collide_mask(guy, level3):
+            manager.screen = 5
+            return False
+        else:
+            return True
+            
     run = True
-    while run: 
+    while run:
+        run = collision()
         guy.move()
         display()
         for event in pygame.event.get():
