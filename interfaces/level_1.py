@@ -12,14 +12,10 @@ def output(window):
     stage = objects.player.background(0,0,1000,1000)
     guy= objects.player.Player(100,600,100,100,7,'images/Character.png')
     drums = objects.player.enemy(750,600,100,100,3,'images/drumms.png')
-    note = objects.player.shooter(750,600,10,10,10,'images/note.png')
     notes = pygame.sprite.Group()
+    enemy_notes = pygame.sprite.Group()
     shoot_timer = 25
     enemy_timer = 50
-    
-    
-
-
 
 
     def display():
@@ -28,6 +24,7 @@ def output(window):
         guy.draw(window)
         drums.draw(window)
         notes.draw(window)
+        enemy_notes.draw(window)
 
        
     run = True
@@ -35,6 +32,7 @@ def output(window):
         guy.fight()
         drums.update()
         notes.update()
+        enemy_notes.update()
         shoot_timer -= 1
         enemy_timer -= 1
         
@@ -45,24 +43,37 @@ def output(window):
                 notes.add(objects.player.shooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note.png'))
         if notes:
             for note in notes:
+                remove = False
                 if note.rect.x > manager.WINDOW_WIDTH:
+                    remove = True
+                if pygame.sprite.collide_rect(drums,note):
+                    remove = True
+                    stage.lives()
+                    print(stage.live)
+                if remove:
                     notes.remove(note)
-                    
+        if stage.live <= 0:
+            manager.screen = 0
+            run = False
+
         if enemy_timer <= 0:
-            notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 10,'images/note.png'))
-            enemy_timer = 50
-            if notes:
-                for note in notes:
-                    if note.rect.x < 0:
-                        notes.remove(note)
-    
-        if pygame.sprite.collide_rect(drums,note):
-            print("You hit the drums!")
-            notes.remove(note)
-            stage.lives()
-                
-                
-                
+            enemy_notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 10,'images/note.png'))
+            enemy_timer = 100
+        if enemy_notes:
+            for note in enemy_notes:
+                remove = False
+                if note.rect.x < 0:
+                    remove = True
+                if pygame.sprite.collide_rect(guy,note):
+                    remove = True
+                    guy.alive = False
+                if remove:
+                    enemy_notes.remove(note)
+        if not guy.alive:
+            manager.screen = 0
+            run = False
+        
+     
         display()
         for event in pygame.event.get():
 

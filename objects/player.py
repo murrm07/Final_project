@@ -7,6 +7,7 @@ class Player(objects.image.still):
     def __init__(self, x, y,width,height,speed,image_to_use):
         super().__init__(x, y,width,height,image_to_use)  
         self.speed = speed
+        self.alive= True
         
     def move(self):   
         key_input = pygame.key.get_pressed()
@@ -86,13 +87,11 @@ class background (objects.image.still):
     def lives(self):
         self.live -= 1
         if self.live == 3:
-            self =super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_2.png')
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_2.png')
         if self.live == 2:
-            self = super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_3.png')
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_3.png')
         if self.live == 1:
-            self = super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_4.png')
-        if self.live == 0:
-            print ("You win!")
-            manager.screen = 2
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_4.png')
+      
 
         
