@@ -4,6 +4,7 @@ import sys
 import objects.image
 import objects.buttons
 import objects.player
+import objects.database
 
 
 def output(window):
@@ -29,10 +30,25 @@ def output(window):
             print   ("level 1")
             return False
         elif  pygame.sprite.collide_mask(guy, level2):
-            manager.screen = 4
+            if db_connection := objects.database.create_connection("database.db"):
+                data = objects.database.select_db(db_connection, "Password", [f"username='{manager.username}'", f"password='{manager.password}'"]).fetchall()
+                if data[0][2] >=1:
+                    manager.screen = 7
+                    print("level 2")
+                else:
+                    manager.screen = 4
+                    print("You need to complete level 1 first!")
+
             return False
         elif  pygame.sprite.collide_mask(guy, level3):
-            manager.screen = 5
+            if db_connection := objects.database.create_connection("database.db"):
+                data = objects.database.select_db(db_connection, "Password", [f"username='{manager.username}'", f"password='{manager.password}'"]).fetchall()
+                if data[0][2] >= 2:
+                    manager.screen = 8
+                    print("level 3")
+                else:
+                    manager.screen = 4
+                    print("You need to complete level 2 first!")
             return False
         else:
             return True

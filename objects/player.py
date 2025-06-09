@@ -93,5 +93,48 @@ class background (objects.image.still):
         if self.live == 1:
             super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/stage_4.png')
       
+      
+      
+class stage (objects.image.still):
+    def __init__(self, x, y, width, height):
+        image_to_use = 'images/level2_stage.png'
+        super().__init__(x, y,width,height,image_to_use)
+        self.live = 4
+        self.width = width
+        self.height = height
+    def lives(self):
+        self.live -= 1
+        if self.live == 3:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level2_stage_2.png')
+        if self.live == 2:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level2_stage_3.png')
+        if self.live == 1:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level2_stage_4.png')
+            
+            
+            
+class power (objects.image.still):
+    def __init__(self, x, y, width, height, speed,image_to_use):
+        super().__init__(x, y,width,height,image_to_use)
+        self.speed = speed
+    def update(self):
+        self.rect.x += self.speed
+        
+class bg (objects.image.still):
+    def __init__(self, x, y, width, height):
+        image_to_use = 'images/level3_screen.png'
+        super().__init__(x, y,width,height,image_to_use)
+        self.live = 4
+        self.width = width
+        self.height = height
+    def lives(self):
+        self.live -= 1
+        if self.live == 3:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level3_screen_2.png')
+        if self.live == 2:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level3_screen_3.png')
+        if self.live == 1:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level3_screen_4.png')
+
 
         

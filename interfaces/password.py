@@ -49,6 +49,10 @@ def output(window):
                 if data:
                     print("Login successful")
                     manager.screen = 2
+                    manager.username = txt_username.text
+                    manager.password = txt_password.text
+                    manager.level = data[0][2]
+                    manager.id = data[0][0] 
                     run = False
                 else:
                     print("Login failed")

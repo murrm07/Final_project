@@ -9,14 +9,16 @@ import objects.database
 
 
 def output(window):
-    stage = objects.player.background(0,0,1000,1000)
+    stage = objects.player.bg(0,0,1000,1000)
     guy= objects.player.Player(100,600,100,100,7,'images/Character.png')
     drums = objects.player.enemy(750,600,100,100,3,'images/drumms.png')
     notes = pygame.sprite.Group()
     enemy_notes = pygame.sprite.Group()
+    powernotes = pygame.sprite.Group()
     db_connection = objects.database.create_connection("database.db")
     shoot_timer = 25
-    enemy_timer = 50
+    enemy_timer = 40
+    power_shoot_timer = 100
 
 
     def display():
@@ -26,14 +28,15 @@ def output(window):
         drums.draw(window)
         notes.draw(window)
         enemy_notes.draw(window)
+        powernotes.draw(window)
 
-       
     run = True
     while run: 
         guy.fight()
         drums.update()
         notes.update()
         enemy_notes.update()
+        powernotes.update()
         shoot_timer -= 1
         enemy_timer -= 1
         
@@ -42,6 +45,12 @@ def output(window):
         if key_input[pygame.K_1] and shoot_timer <= 0:
                 shoot_timer = 25
                 notes.add(objects.player.shooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note.png'))
+
+        if key_input[pygame.K_SPACE] and power_shoot_timer <= 0:
+                power_shoot_timer = 100
+                powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
+
+
         if notes:
             for note in notes:
                 remove = False
@@ -57,7 +66,8 @@ def output(window):
             manager.screen = 5
             run = False
             db_connection = objects.database.create_connection("database.db")
-            objects.database.update_db(db_connection,"Password",["level=1"],f"id={manager.id}")
+            objects.database.update_db(db_connection,"Password",["level=2"],f"id={manager.id}")
+            
 
         if enemy_timer <= 0:
             enemy_notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 10,'images/note.png'))
@@ -85,6 +95,5 @@ def output(window):
                 pygame.quit()
                 sys.exit()
   
-       
         pygame.display.flip() #update the display
         manager.fpsClock.tick(manager.fps) #speed of redraw
