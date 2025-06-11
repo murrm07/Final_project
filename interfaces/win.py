@@ -7,7 +7,7 @@ from pygame import mixer
 mixer.init()
 def output(window):
     bg= objects.image.still(0,0,1000,1000,'images/win.png')
-    btn_return = objects.buttons.no_background(100,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Return to map")
+    btn_return = objects.buttons.no_background(100,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Return to Map")
     btn_exit = objects.buttons.no_background(700,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Click me to Exit")
     
 

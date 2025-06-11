@@ -16,10 +16,11 @@ def output(window):
     enemy_notes = pygame.sprite.Group()
     powernotes = pygame.sprite.Group()
     db_connection = objects.database.create_connection("database.db")
+    multishot = pygame.sprite.Group()
     shoot_timer = 25
     enemy_timer = 40
-    power_shoot_timer = 100
-
+    power_shoot_timer = 80
+    multishot_timer = 15
 
     def display():
         window.fill((0,0,0)) #White background
@@ -29,6 +30,7 @@ def output(window):
         notes.draw(window)
         enemy_notes.draw(window)
         powernotes.draw(window)
+        multishot.draw(window)
 
     run = True
     while run: 
@@ -37,18 +39,28 @@ def output(window):
         notes.update()
         enemy_notes.update()
         powernotes.update()
+        multishot.update()
         shoot_timer -= 1
         enemy_timer -= 1
+        power_shoot_timer -= 1
+        multishot_timer -= 1
         
         
         key_input = pygame.key.get_pressed()
         if key_input[pygame.K_1] and shoot_timer <= 0:
-                shoot_timer = 25
-                notes.add(objects.player.shooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note.png'))
+            shoot_timer = 25
+            notes.add(objects.player.shooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note.png'))
 
+        key_input = pygame.key.get_pressed()
         if key_input[pygame.K_SPACE] and power_shoot_timer <= 0:
-                power_shoot_timer = 100
-                powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
+            print("power")
+            power_shoot_timer = 80
+            powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
+        
+        key_input = pygame.key.get_pressed()
+        if key_input[pygame.K_2] and multishot_timer <= 0:
+            multishot_timer = 15
+            multishot.add(objects.player.multishooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note_3.png'))
 
 
         if notes:
@@ -62,11 +74,36 @@ def output(window):
                     print(stage.live)
                 if remove:
                     notes.remove(note)
+                    
+        if powernotes:
+            for note in powernotes:
+                remove = False
+                if note.rect.x > manager.WINDOW_WIDTH:
+                    remove = True
+                if pygame.sprite.collide_rect(drums,note):
+                    remove = True
+                    stage.lives()
+                    stage.lives()
+                    print(stage.live)
+                if remove:
+                    powernotes.remove(note)
+        
+        if multishot:
+            for note in multishot:
+                remove = False
+                if note.rect.x > manager.WINDOW_WIDTH:
+                    remove = True
+                if pygame.sprite.collide_rect(drums,note):
+                    remove = True
+                    #stage.lives()
+                    print(stage.live)
+                if remove:
+                    multishot.remove(note)
         if stage.live <= 0:
             manager.screen = 5
             run = False
             db_connection = objects.database.create_connection("database.db")
-            objects.database.update_db(db_connection,"Password",["level=2"],f"id={manager.id}")
+            objects.database.update_db(db_connection,"Password",["level=3"],f"id={manager.id}")
             
 
         if enemy_timer <= 0:

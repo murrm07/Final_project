@@ -13,6 +13,7 @@ import interfaces.map
 import interfaces.options
 import interfaces.level_2
 import interfaces.level_3
+import interfaces.story
 pygame.init()
 
 
@@ -39,5 +40,7 @@ while True:
         interfaces.level_2.output(window)   
     if manager.screen == 8:
         interfaces.level_3.output(window)
-   
+    if manager.screen == 9:
+        interfaces.story.output(window)
+    
 

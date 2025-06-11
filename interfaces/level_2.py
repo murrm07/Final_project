@@ -74,6 +74,7 @@ def output(window):
                 if pygame.sprite.collide_rect(drums,note):
                     remove = True
                     stage.lives()
+                    stage.lives()
                     print(stage.live)
                 if remove:
                     powernotes.remove(note)

@@ -17,12 +17,6 @@ def output(window):
         btn_return.draw(window)
         btn_exit.draw(window)   
        
-        
-    def play_music(file_path, volume=1.0):
-        mixer.music.load(file_path)
-        mixer.music.set_volume(volume)
-        mixer.music.play()
-    play_music('music/output.ogg')    
     run = True
     while run: 
         

@@ -135,6 +135,14 @@ class bg (objects.image.still):
             super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level3_screen_3.png')
         if self.live == 1:
             super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level3_screen_4.png')
+            
+            
+class multishooter (objects.image.still):
+    def __init__(self, x, y, width, height, speed,image_to_use):
+        super().__init__(x, y,width,height,image_to_use)
+        self.speed = speed
+    def update(self):
+        self.rect.x += self.speed
 
 
         

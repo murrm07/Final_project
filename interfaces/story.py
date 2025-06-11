@@ -8,8 +8,9 @@ import objects.buttons
 
 def output(window):
     bg= objects.image.still(0,0,1000,1000,'images/story.png')
-    btn_exit = objects.buttons.no_background(650,500,"Arial",40,(235, 64, 52),(98, 52, 235),"Click to Exit")
-    btn_return = objects.buttons.no_background(650,350,"Arial",40,(235, 64, 52),(98, 52, 235),"click to return")
+    btn_exit = objects.buttons.no_background(650,800,"Arial",40,(235, 64, 52),(98, 52, 235),"Click to Exit")
+    btn_return = objects.buttons.no_background(200,800,"Arial",40,(235, 64, 52),(98, 52, 235),"Click to Return")
+
     def display():
         window.fill((0,0,0)) #White background
         bg.draw(window)
