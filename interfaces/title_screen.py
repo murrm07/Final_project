@@ -18,7 +18,7 @@ def output(window):
    
     run = True
     while run: 
-        
+    
         display()
         for event in pygame.event.get():
             if btn_start.update(pygame.mouse.get_pos(),event):

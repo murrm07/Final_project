@@ -11,7 +11,7 @@ import objects.database
 def output(window):
     stage = objects.player.stage(0,0,1000,1000)
     guy= objects.player.Player(100,600,100,100,7,'images/Character.png')
-    drums = objects.player.enemy(750,600,100,100,3,'images/drumms.png')
+    drums = objects.player.enemy(750,600,100,100,3,'images/enemy_2.png')
     notes = pygame.sprite.Group()
     enemy_notes = pygame.sprite.Group()
     powernotes = pygame.sprite.Group()

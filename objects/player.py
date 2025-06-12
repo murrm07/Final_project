@@ -143,6 +143,31 @@ class multishooter (objects.image.still):
         self.speed = speed
     def update(self):
         self.rect.x += self.speed
+    
 
+class back (objects.image.still):
+    def __init__(self, x, y, width, height):
+        image_to_use = 'images/level4.png'
+        super().__init__(x, y,width,height,image_to_use)
+        self.live = 4
+        self.width = width
+        self.height = height
+    def lives(self):
+        self.live -= 1
+        if self.live == 3:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level4_2.png')
+        if self.live == 2:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level4_3.png')
+        if self.live == 1:
+            super().__init__(self.rect.x, self.rect.y,self.width,self.height,'images/level4_4.png')
+
+
+class heavy (objects.image.still):
+    def __init__(self, x, y, width, height, speed,image_to_use):
+        super().__init__(x, y,width,height,image_to_use)
+        self.speed = speed
+    def update(self):
+        self.rect.x += self.speed
+     
 
         

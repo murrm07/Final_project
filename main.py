@@ -3,6 +3,7 @@
 #to create space invaders game
 
 import pygame
+import interfaces.boss
 import interfaces.level_1
 import interfaces.lose
 import interfaces.win
@@ -14,6 +15,10 @@ import interfaces.options
 import interfaces.level_2
 import interfaces.level_3
 import interfaces.story
+import interfaces.boss
+import interfaces.c1
+import interfaces.c2
+import interfaces.c3
 pygame.init()
 
 
@@ -42,5 +47,14 @@ while True:
         interfaces.level_3.output(window)
     if manager.screen == 9:
         interfaces.story.output(window)
+    if manager.screen == 10:
+        interfaces.boss.output(window)
+    if manager.screen == 11:
+        interfaces.c1.output(window)
+    if manager.screen == 12:
+        interfaces.c2.output(window)
+    if manager.screen == 13:
+        interfaces.c3.output(window)
+    
     
 
