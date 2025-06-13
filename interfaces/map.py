@@ -33,32 +33,32 @@ def output(window):
         elif  pygame.sprite.collide_mask(guy, level2):
             if db_connection := objects.database.create_connection("database.db"):
                 data = objects.database.select_db(db_connection, "Password", [f"username='{manager.username}'", f"password='{manager.password}'"]).fetchall()
-                if data[0][2] >=1:
+                if data[0][3] >=1:
                     manager.screen = 12
                     print("level 2")
                 else:
-                    manager.screen = 4
+                    manager.screen = 15
                     print("You need to complete level 1 first!")
 
             return False
         elif  pygame.sprite.collide_mask(guy, level3):
             if db_connection := objects.database.create_connection("database.db"):
                 data = objects.database.select_db(db_connection, "Password", [f"username='{manager.username}'", f"password='{manager.password}'"]).fetchall()
-                if data[0][2] >= 2:
+                if data[0][3] >= 2:
                     manager.screen = 13
                     print("level 3")
                 else:
-                    manager.screen = 4
+                    manager.screen = 15
                     print("You need to complete level 2 first!")
             return False
         elif  pygame.sprite.collide_mask(guy, level4):
             if db_connection := objects.database.create_connection("database.db"):
                 data = objects.database.select_db(db_connection, "Password", [f"username='{manager.username}'", f"password='{manager.password}'"]).fetchall()
-                if data[0][2] >= 3:
-                    manager.screen = 10
+                if data[0][3] >= 3:
+                    manager.screen = 14
                     print("level 4")
                 else:
-                    manager.screen = 4
+                    manager.screen = 15
                     print("You need to complete level 3 first!")
             return False
         else:

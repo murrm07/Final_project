@@ -19,6 +19,8 @@ import interfaces.boss
 import interfaces.c1
 import interfaces.c2
 import interfaces.c3
+import interfaces.c4
+import interfaces.gc
 pygame.init()
 
 
@@ -55,6 +57,8 @@ while True:
         interfaces.c2.output(window)
     if manager.screen == 13:
         interfaces.c3.output(window)
-    
-    
+    if manager.screen == 14:
+        interfaces.c4.output(window)
+    if manager.screen == 15:
+        interfaces.gc.output(window)
 

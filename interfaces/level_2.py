@@ -11,7 +11,7 @@ import objects.database
 def output(window):
     stage = objects.player.stage(0,0,1000,1000)
     guy= objects.player.Player(100,600,100,100,7,'images/Character.png')
-    drums = objects.player.enemy(750,600,100,100,3,'images/enemy_2.png')
+    drums = objects.player.enemy(750,600,100,100,5,'images/enemy_2.png')
     notes = pygame.sprite.Group()
     enemy_notes = pygame.sprite.Group()
     powernotes = pygame.sprite.Group()
@@ -51,7 +51,7 @@ def output(window):
         if key_input[pygame.K_SPACE] and power_shoot_timer <= 0:
             print("power")
             power_shoot_timer = 100
-            powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
+            powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 12,'images/note_2.png'))
 
 
         if notes:

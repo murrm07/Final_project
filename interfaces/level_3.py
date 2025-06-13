@@ -11,14 +11,14 @@ import objects.database
 def output(window):
     stage = objects.player.bg(0,0,1000,1000)
     guy= objects.player.Player(100,600,100,100,7,'images/Character.png')
-    drums = objects.player.enemy(750,600,100,100,3,'images/enemy_3.png')
+    drums = objects.player.enemy(750,600,100,100,7,'images/enemy_3.png')
     notes = pygame.sprite.Group()
     enemy_notes = pygame.sprite.Group()
     powernotes = pygame.sprite.Group()
     db_connection = objects.database.create_connection("database.db")
     multishot = pygame.sprite.Group()
     shoot_timer = 25
-    enemy_timer = 40
+    enemy_timer = 30
     power_shoot_timer = 80
     multishot_timer = 15
 
@@ -107,8 +107,8 @@ def output(window):
             
 
         if enemy_timer <= 0:
-            enemy_notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 10,'images/note.png'))
-            enemy_timer = 100
+            enemy_notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 13,'images/note.png'))
+            enemy_timer = 30
         if enemy_notes:
             for note in enemy_notes:
                 remove = False

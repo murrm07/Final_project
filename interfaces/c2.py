@@ -7,8 +7,8 @@ from pygame import mixer
 mixer.init()
 def output(window):
     bg= objects.image.still(0,0,1000,1000,'images/challenger2.png')
-    btn_except = objects.buttons.no_background(100,850,"Arial",35,(235, 64, 52),(98, 52, 235),"ACCEPT")
-    btn_return = objects.buttons.no_background(700,850,"Arial",35,(235, 64, 52),(98, 52, 235),"GO BACK")
+    btn_except = objects.buttons.no_background(100,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Accept Challenge")
+    btn_return = objects.buttons.no_background(700,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Return to Map")
     
     
  

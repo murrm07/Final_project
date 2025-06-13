@@ -6,7 +6,7 @@ import objects.buttons
 from pygame import mixer
 mixer.init()
 def output(window):
-    bg= objects.image.still(0,0,1000,1000,'images/challenger3.png')
+    bg= objects.image.still(0,0,1000,1000,'images/boss_warning.png')
     btn_except = objects.buttons.no_background(100,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Accept Challenge")
     btn_return = objects.buttons.no_background(700,850,"Arial",35,(235, 64, 52),(98, 52, 235),"Return to Map")
    
@@ -26,7 +26,7 @@ def output(window):
         display()
         for event in pygame.event.get():
             if btn_except.update(pygame.mouse.get_pos(),event):
-                manager.screen = 8
+                manager.screen = 10
                 run = False
             if btn_return.update(pygame.mouse.get_pos(),event):
                 manager.screen = 2
