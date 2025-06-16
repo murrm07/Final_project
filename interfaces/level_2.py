@@ -81,8 +81,8 @@ def output(window):
         if stage.live <= 0:
             manager.screen = 5
             run = False
-            db_connection = objects.database.create_connection("database.db")
-            objects.database.update_db(db_connection,"Password",["level=2"],f"id={manager.id}")
+            manager.level = 2
+            objects.database.update_db(db_connection,"Password",[f"level={manager.level}"], f"id={manager.id}")
             
 
         if enemy_timer <= 0:

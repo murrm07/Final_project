@@ -42,9 +42,12 @@ def output(window):
             if btn_create.update(pygame.mouse.get_pos(),event):
                 objects.database.insert_db(db_connection, "Password", ["username","Password","level"],[txt_username.text,txt_password.text,0])
                 print("Data inserted successfully")
+                data = objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'", f"password='{txt_password.text}'"]).fetchall()
                 manager.screen = 2
                 manager.username = txt_username.text
                 manager.password = txt_password.text
+                manager.level = data[0][3]
+                manager.id = data[0][0] 
                 run = False
             if btn_login.update(pygame.mouse.get_pos(),event):
                 data = objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'", f"password='{txt_password.text}'"]).fetchall()

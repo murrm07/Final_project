@@ -128,7 +128,8 @@ def output(window):
             manager.screen = 5
             run = False
             db_connection = objects.database.create_connection("database.db")
-            objects.database.update_db(db_connection,"Password",["level=4"],f"id={manager.id}")
+            manager.level = 4
+            objects.database.update_db(db_connection,"Password",[f"username='{manager.username}'", f"password='{manager.password}'"],f"level={manager.level}")
             
 
         if enemy_timer <= 0:

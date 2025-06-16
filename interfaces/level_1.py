@@ -56,8 +56,8 @@ def output(window):
         if stage.live <= 0:
             manager.screen = 5
             run = False
-            db_connection = objects.database.create_connection("database.db")
-            objects.database.update_db(db_connection,"Password",["level=1"],f"id={manager.id}")
+            manager.level = 1
+            objects.database.update_db(db_connection,"Password",[f"level={manager.level}"], f"id={manager.id}")
 
         if enemy_timer <= 0:
             enemy_notes.add(objects.player.enemy_shooter(drums.rect.x,drums.rect.y,50,50, 10,'images/note.png'))

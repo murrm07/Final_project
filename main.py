@@ -21,6 +21,7 @@ import interfaces.c2
 import interfaces.c3
 import interfaces.c4
 import interfaces.gc
+import interfaces.credit
 pygame.init()
 
 
@@ -61,4 +62,5 @@ while True:
         interfaces.c4.output(window)
     if manager.screen == 15:
         interfaces.gc.output(window)
-
+    if manager.screen == 16:
+        interfaces.credit.output(window)
