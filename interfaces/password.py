@@ -29,6 +29,7 @@ def output(window):
         btn_exit.draw(window)
         window.blit(font.render("Username", True, (0, 0, 0)), (txt_username.rect.x, txt_username.rect.y - 30))
         window.blit(font.render("Password", True, (0, 0, 0)), (txt_password.rect.x, txt_password.rect.y - 30))
+        window.blit(font.render("Please create an account or login", True, (0, 0, 0)), (250, 100))
         
        
     
@@ -40,8 +41,21 @@ def output(window):
         for event in pygame.event.get():
             txt_group.update(pygame.mouse.get_pos(), event)
             if btn_create.update(pygame.mouse.get_pos(),event):
+                if objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'"]).fetchall():
+                    window.blit(font.render("Username already exists", True, (255, 0, 0)), (250, 600))
+                    pygame.display.update()
+                    pygame.time.delay(3000)
+                    break
+                    
+                if not txt_username.text or not txt_password.text:
+                    window.blit(font.render("Please fill in all fields", True, (255, 0, 0)), (250, 600))
+                    pygame.display.update()
+                    pygame.time.delay(3000)
+                    break
                 objects.database.insert_db(db_connection, "Password", ["username","Password","level"],[txt_username.text,txt_password.text,0])
-                print("Data inserted successfully")
+                window.blit(font.render("Account created successfully", True, (0, 255, 0)), (250, 600))
+                pygame.display.update()
+                pygame.time.delay(3000)
                 data = objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'", f"password='{txt_password.text}'"]).fetchall()
                 manager.screen = 2
                 manager.username = txt_username.text
@@ -52,7 +66,7 @@ def output(window):
             if btn_login.update(pygame.mouse.get_pos(),event):
                 data = objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'", f"password='{txt_password.text}'"]).fetchall()
                 if data:
-                    print("Login successful")
+                    window.blit(font.render("Login successful", True, (0, 255, 0)), (250, 600))
                     manager.screen = 2
                     manager.username = txt_username.text
                     manager.password = txt_password.text
@@ -60,7 +74,9 @@ def output(window):
                     manager.id = data[0][0] 
                     run = False
                 else:
-                    print("Login failed")
+                    window.blit(font.render("Login failed", True, (255, 0, 0)), (250, 600))
+                    pygame.display.update()
+                    pygame.time.delay(3000)
             if btn_exit.update(pygame.mouse.get_pos(),event):
                 pygame.quit() 
                 sys.exit()

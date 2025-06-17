@@ -125,11 +125,11 @@ def output(window):
                 if remove:
                     heavy_notes.remove(note)
         if back.live <= 0:
-            manager.screen = 5
+            manager.screen = 17
             run = False
             db_connection = objects.database.create_connection("database.db")
             manager.level = 4
-            objects.database.update_db(db_connection,"Password",[f"username='{manager.username}'", f"password='{manager.password}'"],f"level={manager.level}")
+            objects.database.update_db(db_connection,"Password",[f"level={manager.level}"], f"id={manager.id}")
             
 
         if enemy_timer <= 0:
