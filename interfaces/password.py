@@ -55,7 +55,6 @@ def output(window):
                 objects.database.insert_db(db_connection, "Password", ["username","Password","level"],[txt_username.text,txt_password.text,0])
                 window.blit(font.render("Account created successfully", True, (0, 255, 0)), (250, 600))
                 pygame.display.update()
-                pygame.time.delay(3000)
                 data = objects.database.select_db(db_connection, "Password", [f"username='{txt_username.text}'", f"password='{txt_password.text}'"]).fetchall()
                 manager.screen = 2
                 manager.username = txt_username.text

@@ -23,6 +23,7 @@ def output(window):
     power_shoot_timer = 80
     multishot_timer = 15
     heavy_timer = 100
+    note_counter = 0
 
     def display():
         window.fill((0,0,0)) #White background
@@ -62,7 +63,7 @@ def output(window):
             powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
         
         key_input = pygame.key.get_pressed()
-        if key_input[pygame.K_2] and multishot_timer <= 0:
+        if key_input[pygame.K_2] and multishot_timer <= 0 and len(multishot) < 3:
             multishot_timer = 15
             multishot.add(objects.player.multishooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note_3.png'))
         
@@ -109,6 +110,7 @@ def output(window):
                     print(back.live)
                 if remove:
                     multishot.remove(note)
+                note_counter += 1
                     
         if heavy_notes:
             for note in heavy_notes:
@@ -140,9 +142,9 @@ def output(window):
                 remove = False
                 if note.rect.x < 0:
                     remove = True
-                if pygame.sprite.collide_rect(guy,note):
-                    remove = True
-                    guy.alive = False
+               # if pygame.sprite.collide_rect(guy,note):
+                   # remove = True
+                   # guy.alive = False
                 if remove:
                     enemy_notes.remove(note)
         if not guy.alive:

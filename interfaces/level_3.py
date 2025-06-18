@@ -58,7 +58,7 @@ def output(window):
             powernotes.add(objects.player.power(guy.rect.x,guy.rect.y,50,50, 10,'images/note_2.png'))
         
         key_input = pygame.key.get_pressed()
-        if key_input[pygame.K_2] and multishot_timer <= 0:
+        if key_input[pygame.K_2] and multishot_timer <= 0 and len(multishot) < 3:
             multishot_timer = 15
             multishot.add(objects.player.multishooter(guy.rect.x,guy.rect.y,50,50, 10,'images/note_3.png'))
 
